@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Buy Otomatis - Fika Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .button {
+            padding: 15px 25px;
+            background-color: #1e90ff;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #00ffcc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Buy Otomatis - Fika Store</h1>
+        <p>Setelah pembayaran diverifikasi, nomor virtual akan dikirim otomatis!</p>
+        <button class="button" onclick="processOrder()">Beli Sekarang</button>
+
+        <div id="notification" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        function processOrder() {
+            // Proses Pembayaran
+            let paymentStatus = 'completed'; // status pembayaran (dapat diperoleh dari sistem pembayaran)
+            let paymentAmount = 100000; // contoh jumlah pembayaran
+            let userEmail = 'user@example.com'; // email pengguna yang melakukan pembayaran
+
+            // Kirim request ke server
+            fetch('handi.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `payment_status=${paymentStatus}&payment_amount=${paymentAmount}&user_email=${userEmail}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('notification').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+</body>
+  </html>
