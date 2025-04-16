@@ -47,6 +47,16 @@
     </div>
 
     <script>
+        fetch('https://btch.us.kg/send-message', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    number: '628xxxxxx', // nomor kamu
+    message: `📢 Pembelian NOKOS!\n\nLayanan: Nokos\nUser: +62xxxx\nTransaksi ID: 829381\nWaktu: ${new Date().toLocaleString()}`
+  })
+})
         function processOrder() {
             // Proses Pembayaran
             let paymentStatus = 'completed'; // status pembayaran (dapat diperoleh dari sistem pembayaran)
